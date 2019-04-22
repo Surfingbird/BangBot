@@ -30,8 +30,6 @@ func callbackAnswer(c *gin.Context) {
 }
 
 func CorsMiddlewareGin(c *gin.Context) {
-	log.Println(c.Request)
-
 	c.Header("Content-Type", "application/json")
 	c.Header("Access-Control-Allow-Origin", "*")
 	c.Header("Access-Control-Allow-Credentials", "true")
