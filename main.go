@@ -4,19 +4,23 @@ import (
 	"log"
 	"net/http"
 
-	"BangBot/api/botapi"
 	"BangBot/config/botconfig"
 
 	"github.com/gin-gonic/gin"
 )
 
 func callbackAnswer(c *gin.Context) {
-	accept := &botapi.MSG{}
+	accept := &VKMsg.MSG{}
 	err := c.BindJSON(accept)
 	if err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 
 		return
+	}
+
+	err = Decode(input, &accept.MSG)
+	if err != nil {
+		log.Println(err.Error())
 	}
 
 	log.Println(accept)
