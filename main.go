@@ -21,7 +21,7 @@ func callbackAnswer(c *gin.Context) {
 	}
 
 	if accept.Type == "message_new" {
-		msg := botapi.MessageNew{}
+		msg := &botapi.MessageNew{}
 
 		err = mapstructure.Decode(accept.MSG, msg)
 		if err != nil {
