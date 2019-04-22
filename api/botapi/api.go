@@ -1,6 +1,6 @@
 package botapi
 
-type VKAccept struct {
+type VKMsg struct {
 	Type    string      `json:"type"`
 	GroupId int         `json:"group_id"`
 	MSG     interface{} `json:"object"`
