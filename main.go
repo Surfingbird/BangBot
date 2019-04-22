@@ -7,6 +7,7 @@ import (
 	"BangBot/config/botconfig"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mitchellh/mapstructure"
 )
 
 func callbackAnswer(c *gin.Context) {
@@ -18,7 +19,7 @@ func callbackAnswer(c *gin.Context) {
 		return
 	}
 
-	err = Decode(input, &accept.MSG)
+	err = mapstructure.Decode(input, &accept.MSG)
 	if err != nil {
 		log.Println(err.Error())
 	}
