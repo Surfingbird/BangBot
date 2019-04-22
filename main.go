@@ -19,11 +19,11 @@ func callbackAnswer(c *gin.Context) {
 		return
 	}
 
-	if accept.Type != "confirmation" || accept.GroupId != 181466832 {
-		c.AbortWithStatus(http.StatusForbidden)
-		
-		return
-	}
+	// if accept.Type != "confirmation" || accept.GroupId != 181466832 {
+	// 	c.AbortWithStatus(http.StatusForbidden)
+
+	// 	return
+	// }
 
 	log.Println(accept)
 	c.String(http.StatusOK, "fa1fc205")
