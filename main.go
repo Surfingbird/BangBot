@@ -37,6 +37,8 @@ func setupRouter() *gin.Engine {
 }
 
 func main() {
+	log.Println(botconfig.BOTPORT)
+
 	router := setupRouter()
 	router.Run(":" + botconfig.BOTPORT)
 }
