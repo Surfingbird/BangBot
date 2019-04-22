@@ -11,7 +11,7 @@ import (
 )
 
 func callbackAnswer(c *gin.Context) {
-	accept := &botapi.VKAccept{}
+	accept := &botapi.MSG{}
 	err := c.BindJSON(accept)
 	if err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
@@ -19,17 +19,13 @@ func callbackAnswer(c *gin.Context) {
 		return
 	}
 
-	// if accept.Type != "confirmation" || accept.GroupId != 181466832 {
-	// 	c.AbortWithStatus(http.StatusForbidden)
-
-	// 	return
-	// }
-
 	log.Println(accept)
-	c.String(http.StatusOK, "fa1fc205")
+
+	с.String(http.StatusOK, "ok")
 }
 
 func CorsMiddlewareGin(c *gin.Context) {
+
 	c.Header("Content-Type", "application/json")
 	c.Header("Access-Control-Allow-Origin", "*")
 	c.Header("Access-Control-Allow-Credentials", "true")
