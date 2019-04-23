@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 
+	"BangBot/pkg/vk-bot-pkg/worker"
+
 	"github.com/gin-gonic/gin"
 	"github.com/mitchellh/mapstructure"
 )
@@ -19,14 +21,19 @@ func CallbackAnswer(c *gin.Context) {
 	}
 
 	if accept.Type == "message_new" {
-		msg := &botapi.MessageNew{}
-
-		err = mapstructure.Decode(accept.MSG, msg)
+		msg := botapi.MessageNew{}
+		err = mapstructure.Decode(accept.MSG, &msg)
 		if err != nil {
 			log.Println(err.Error())
-		} else {
-			log.Println(msg)
+			c.String(http.StatusOK, "ok")
+
+			return
 		}
+
+		// ToDo пока тут будет echo
+		worker.CallBackWorcker.AddTask(&worker.Echo{
+			Msg: msg,
+		})
 	}
 
 	c.String(http.StatusOK, "ok")
