@@ -22,6 +22,11 @@ func getFromId(str string) string {
 }
 
 func CallbackAnswer(c *gin.Context) {
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(c.Request.Body)
+	s := buf.String()
+	fmt.Println(s)
+
 	accept := &botapi.VKMsg{}
 	err := c.BindJSON(accept)
 	if err != nil {
