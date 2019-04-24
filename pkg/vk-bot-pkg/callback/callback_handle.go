@@ -3,6 +3,7 @@ package callback
 import (
 	"BangBot/api/botapi"
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -28,9 +29,9 @@ func CallbackAnswer(c *gin.Context) {
 	fmt.Println(s)
 
 	accept := &botapi.VKMsg{}
-	err := c.BindJSON(accept)
+	err := json.Unmarshal([]byte(s), accept)
 	if err != nil {
-		c.AbortWithStatus(http.StatusBadRequest)
+		fmt.Println("error:", err)
 
 		return
 	}
@@ -44,10 +45,6 @@ func CallbackAnswer(c *gin.Context) {
 
 			return
 		}
-
-		buf := new(bytes.Buffer)
-		buf.ReadFrom(c.Request.Body)
-		s := buf.String()
 
 		fromId := getFromId(s)
 		fmt.Printf("fromId: %v\n\n", fromId)
