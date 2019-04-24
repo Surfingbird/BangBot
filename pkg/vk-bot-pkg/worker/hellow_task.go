@@ -12,21 +12,11 @@ import (
 	"strconv"
 )
 
-type Task interface {
-	Exec()
-}
-
-type Echo struct {
+type Hellow struct {
 	Msg botapi.MessageNew
 }
 
-func (e *Echo) Exec() {
-	fmt.Println(e.Msg)
-}
-
-type WriteMe struct{}
-
-func (t *WriteMe) Exec() {
+func (t *Hellow) Exec() {
 	u, err := url.Parse("https://api.vk.com/method/messages.send")
 	if err != nil {
 		log.Println(err.Error())
@@ -34,9 +24,9 @@ func (t *WriteMe) Exec() {
 
 	q := u.Query()
 	q.Set("access_token", botconfig.ACCESSTOKEN)
-	q.Set("message", "My king!")
+	q.Set("message", "Hellow!")
 	q.Set("random_id", strconv.Itoa(rand.Int()))
-	q.Set("user_id", botconfig.MYVKID)
+	q.Set("user_id", strconv.Itoa(t.Msg.FromId))
 	q.Set("v", botconfig.VKVERSION)
 
 	u.RawQuery = q.Encode()
