@@ -20,6 +20,8 @@ func CallbackAnswer(c *gin.Context) {
 
 	defer c.String(http.StatusOK, "ok")
 
+	fmt.Printf("тут пустой интерфейс: %v", accept.MSG)
+
 	if accept.Type == "message_new" {
 		msg := botapi.MessageNew{}
 		err = mapstructure.Decode(accept.MSG, &msg)
