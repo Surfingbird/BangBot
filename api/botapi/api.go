@@ -10,7 +10,7 @@ type MessageNew struct {
 	Id        int    `json:"id"`
 	Date      int    `json:"date"`
 	PeerId    int    `json:"peer_id"`
-	FromId    string `json:"from_id"`
+	FromId    int64  `json:"from_id"`
 	Text      string `json:"text"`
 	RandomId  int    `json:"random_id"`
 	Ref       string `json:"ref"`

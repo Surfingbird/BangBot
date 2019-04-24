@@ -24,11 +24,13 @@ func (t *Hellow) Exec() {
 		log.Println(err.Error())
 	}
 
+	fmt.Printf("куда: %v", fmt.Sprintf("%v", t.Msg.FromId))
+
 	q := u.Query()
 	q.Set("access_token", botconfig.ACCESSTOKEN)
 	q.Set("message", "Извините, но я еще тупой!")
 	q.Set("random_id", strconv.Itoa(rand.Int()))
-	q.Set("user_id", t.Msg.FromId)
+	q.Set("user_id", fmt.Sprintf("%v", t.Msg.FromId))
 	q.Set("v", botconfig.VKVERSION)
 
 	u.RawQuery = q.Encode()
