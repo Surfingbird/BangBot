@@ -21,8 +21,6 @@ func CallbackAnswer(c *gin.Context) {
 
 	defer c.String(http.StatusOK, "ok")
 
-	fmt.Printf("тут пустой интерфейс: %v", accept.MSG)
-
 	if accept.Type == "message_new" {
 		msg := botapi.MessageNew{}
 		err = mapstructure.Decode(accept.MSG, &msg)
@@ -32,7 +30,23 @@ func CallbackAnswer(c *gin.Context) {
 			return
 		}
 
-		fmt.Printf("тут пустой приведенная сруктура: %v", msg)
+		fmt.Println("------Тут идет приведение типов------")
+		fmt.Printf("Пустой интерфейс: %v", msg.FromId)
+		idint, ok := (msg.FromId).(int)
+		if ok {
+			fmt.Printf("int: %v", idint)
+		}
+
+		idstr, ok := (msg.FromId).(string)
+		if ok {
+			fmt.Printf("string: %v", idstr)
+		}
+
+		idfloat, ok := (msg.FromId).(float64)
+		if ok {
+			fmt.Printf("float64: %v", idfloat)
+		}
+		fmt.Println("------Тут идет приведение типов------")
 
 		msgLogic(msg)
 	}
