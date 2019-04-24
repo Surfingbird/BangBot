@@ -26,7 +26,6 @@ func CallbackAnswer(c *gin.Context) {
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(c.Request.Body)
 	s := buf.String()
-	fmt.Println(s)
 
 	accept := &botapi.VKMsg{}
 	err := json.Unmarshal([]byte(s), accept)
@@ -47,9 +46,7 @@ func CallbackAnswer(c *gin.Context) {
 		}
 
 		fromId := getFromId(s)
-		fmt.Printf("fromId: %v\n\n", fromId)
 		msg.FromId = fromId
-		fmt.Println(msg)
 
 		msgLogic(msg)
 	}
