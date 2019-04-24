@@ -2,7 +2,6 @@ package callback
 
 import (
 	"BangBot/api/botapi"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -29,8 +28,6 @@ func CallbackAnswer(c *gin.Context) {
 
 			return
 		}
-
-		fmt.Println(msg)
 
 		msgLogic(msg)
 	}

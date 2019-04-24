@@ -17,6 +17,8 @@ type Hellow struct {
 }
 
 func (t *Hellow) Exec() {
+	fmt.Printf("Hellow Exec: %v  (id to)", t.Msg.FromId)
+
 	u, err := url.Parse("https://api.vk.com/method/messages.send")
 	if err != nil {
 		log.Println(err.Error())
