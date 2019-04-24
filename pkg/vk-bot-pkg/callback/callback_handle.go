@@ -3,6 +3,7 @@ package callback
 import (
 	"BangBot/api/botapi"
 	"bytes"
+	"fmt"
 	"log"
 	"net/http"
 	"regexp"
