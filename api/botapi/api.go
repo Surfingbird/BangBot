@@ -3,7 +3,7 @@ package botapi
 type VKMsg struct {
 	Type    string      `json:"type"`
 	GroupId int         `json:"group_id"`
-	MSG     interface{} `json:"object"`
+	MSG     map[string]interface{} `json:"object"`
 }
 
 type VKNewMsg struct {

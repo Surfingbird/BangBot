@@ -25,6 +25,10 @@ func CallbackAnswer(c *gin.Context) {
 		return
 	}
 
+	fmt.Println(accept)
+	fmt.Println(accept.MSG)
+	fmt.Println(accept.MSG["from_id"])
+
 	defer c.String(http.StatusOK, "ok")
 
 	if accept.Type == "message_new" {
@@ -36,14 +40,6 @@ func CallbackAnswer(c *gin.Context) {
 			return
 		}
 		fmt.Println(msg.FromId)
-
-		newmsg := &botapi.VKNewMsg{}
-		err = c.BindJSON(newmsg)
-		if err != nil {
-			fmt.Println("не получилось")
-		} else {
-			fmt.Printf("Структура: %v\n id: %v", newmsg, newmsg.MSG.FromId)
-		}
 
 		msgLogic(msg)
 	}
