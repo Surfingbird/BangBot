@@ -32,6 +32,8 @@ func CallbackAnswer(c *gin.Context) {
 			return
 		}
 
+		fmt.Printf("тут пустой приведенная сруктура: %v", msg)
+
 		msgLogic(msg)
 	}
 }
