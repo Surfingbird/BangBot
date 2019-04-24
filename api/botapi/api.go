@@ -3,25 +3,14 @@ package botapi
 type VKMsg struct {
 	Type    string      `json:"type"`
 	GroupId int         `json:"group_id"`
-	MSG     map[string]interface{} `json:"object"`
-}
-
-type VKNewMsg struct {
-	Type    string   `json:"type"`
-	GroupId int      `json:"group_id"`
-	MSG     InnerMsg `json:"object"`
-}
-
-type InnerMsg struct {
-	FromId interface{} `json:"from_id"`
-	Text   string      `json:"text"`
+	MSG     interface{} `json:"object"`
 }
 
 type MessageNew struct {
 	Id        int    `json:"id"`
 	Date      int    `json:"date"`
 	PeerId    int    `json:"peer_id"`
-	FromId    int    `json:"from_id"`
+	FromId    string `json:"from_id"`
 	Text      string `json:"text"`
 	RandomId  int    `json:"random_id"`
 	Ref       string `json:"ref"`
