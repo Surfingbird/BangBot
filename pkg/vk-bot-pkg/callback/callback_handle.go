@@ -44,7 +44,9 @@ func CallbackAnswer(c *gin.Context) {
 		s := buf.String()
 
 		fromId := getFromId(s)
+		fmt.Printf("fromId:", fromId)
 		msg.FromId = fromId
+		fmt.Println(msg)
 
 		msgLogic(msg)
 	}
