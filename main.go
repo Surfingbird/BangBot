@@ -6,6 +6,7 @@ import (
 	"BangBot/pkg/public/middleware"
 	"BangBot/pkg/vk-bot-pkg/callback"
 	"BangBot/pkg/vk-bot-pkg/token"
+	"BangBot/pkg/vk-bot-pkg/worker"
 	_ "BangBot/pkg/vk-bot-pkg/worker"
 	"fmt"
 
@@ -19,8 +20,13 @@ func setupRouter() *gin.Engine {
 
 	router.POST("/callback", callback.CallbackAnswer)
 	router.POST("/token", token.UpdateTokenHandle)
+	router.POST("/msgme", writeme)
 
 	return router
+}
+
+func writeme(c *gin.Context) {
+	worker.CallBackWorcker.AddTask(&worker.WriteMe{})
 }
 
 func main() {
