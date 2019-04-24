@@ -29,6 +29,12 @@ func CallbackAnswer(c *gin.Context) {
 	fmt.Println(accept.MSG)
 	fmt.Println(accept.MSG["from_id"])
 
+	if val, ok := accept.MSG["from_id"].(int); ok {
+		fmt.Println(val)
+	} else {
+		fmt.Println("Не получилось")
+	}
+
 	defer c.String(http.StatusOK, "ok")
 
 	if accept.Type == "message_new" {
