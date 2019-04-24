@@ -2,7 +2,6 @@ package callback
 
 import (
 	"BangBot/api/botapi"
-	"bytes"
 	"fmt"
 	"log"
 	"net/http"
@@ -12,11 +11,11 @@ import (
 )
 
 func CallbackAnswer(c *gin.Context) {
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(c.Request.Body)
-	s := buf.String()
+	// buf := new(bytes.Buffer)
+	// buf.ReadFrom(c.Request.Body)
+	// s := buf.String()
 
-	fmt.Println(s)
+	// fmt.Println(s)
 
 	accept := &botapi.VKMsg{}
 	err := c.BindJSON(accept)
@@ -38,51 +37,13 @@ func CallbackAnswer(c *gin.Context) {
 		}
 		fmt.Println(msg.FromId)
 
-		// fmt.Println("------Тут идет приведение типов------")
-		// msg1 := botapi.MessageNewInt{}
-		// err = mapstructure.Decode(accept.MSG, &msg1)
-		// if err != nil {
-		// 	log.Println(err.Error())
-
-		// 	return
-		// }
-		// fmt.Printf("int: %v", msg1.FromId)
-
-		// msg2 := botapi.MessageNewStr{}
-		// err = mapstructure.Decode(accept.MSG, &msg2)
-		// if err != nil {
-		// 	log.Println(err.Error())
-
-		// 	return
-		// }
-		// fmt.Printf("string: %v", msg2.FromId)
-
-		// msg3 := botapi.MessageNewFloat{}
-		// err = mapstructure.Decode(accept.MSG, &msg3)
-		// if err != nil {
-		// 	log.Println(err.Error())
-
-		// 	return
-		// }
-		// fmt.Printf("float: %v", msg3.FromId)
-		// fmt.Println("------Тут идет приведение типов------")
-
-		// fmt.Printf("Пустой интерфейс: %v", msg.FromId)
-		// idint, ok := (msg.FromId).(int)
-		// if ok {
-		// 	fmt.Printf("int: %v", idint)
-		// }
-
-		// idstr, ok := (msg.FromId).(string)
-		// if ok {
-		// 	fmt.Printf("string: %v", idstr)
-		// }
-
-		// idfloat, ok := (msg.FromId).(float64)
-		// if ok {
-		// 	fmt.Printf("float64: %v", idfloat)
-		// }
-		// fmt.Println("------Тут идет приведение типов------")
+		newmsg := &botapi.VKNewMsg{}
+		err = c.BindJSON(newmsg)
+		if err != nil {
+			fmt.Println("не получилось")
+		} else {
+			fmt.Printf("Структура: %v\n id: %v", newmsg, newmsg.MSG.FromId)
+		}
 
 		msgLogic(msg)
 	}
